@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeremy & Patricia — Wedding Invitation</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,600&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        wedding: {
+                            cream: '#FAF7F2',
+                            champagne: '#EFECE6',
+                            blush: '#EAD5D1',
+                            rose: '#D4B2A7',
+                            charcoal: '#26282A',
+                            gold: '#C5A880',
+                            sage: '#A3B19B'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        garamond: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Montserrat"', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- External CSS Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="antialiased overflow-x-hidden selection:bg-wedding-rose selection:text-white">
+
+  <!-- ================= 1. INTERACTIVE ENVELOPE OPENING INTRO (Jeremy & Patricia) ================= -->
+<div id="envelope-overlay" class="fixed inset-0 z-50 flex items-center justify-center bg-stone-900/90 backdrop-blur-md p-4">
+    <div id="envelope-container" class="relative w-full max-w-lg min-h-[360px] md:aspect-[4/3] bg-[#F5F5DC] rounded-xl shadow-2xl flex flex-col items-center justify-center cursor-pointer border border-[#808000]/40 p-3 sm:p-4 overflow-hidden select-none">
+        
+        <!-- Envelope Inner Card (Matches uploaded invitation details & aesthetic) -->
+        <div class="relative flex-1 w-full bg-[#F5F5DC] border border-[#808000]/30 rounded-lg flex flex-col items-center justify-center px-5 py-8 sm:p-8 text-center">
+            
+            <span class="font-serif text-[#808000] text-[10px] sm:text-xs tracking-[0.2em] uppercase mb-2 sm:mb-3">
+                A Love That Found Its Way Back
+            </span>
+            
+            <h1 class="font-serif italic text-3xl sm:text-4xl text-stone-800 font-normal leading-tight mb-2">
+                Jeremy <span class="not-italic text-xs uppercase tracking-widest text-[#808000] mx-1">&amp;</span> Patricia
+            </h1>
+            
+            <p class="font-sans text-[11px] sm:text-xs tracking-[0.18em] uppercase text-stone-600 mt-1 mb-1">
+                9th of January 2027
+            </p>
+            <p class="font-serif italic text-xs sm:text-sm text-stone-500 mb-6">
+                St. Michael the Archangel Parish, Dagupan City
+            </p>
+            
+            <button type="button" class="inline-block px-6 py-2.5 bg-[#808000] text-[#F5F5DC] rounded-full text-[11px] font-medium tracking-widest uppercase shadow-md hover:bg-[#666600] active:scale-95 transition duration-300">
+                Click to Open Invitation
+            </button>
+        </div>
+
+    </div>
+</div>
+
+        <!-- Envelope Side & Bottom Pocket Folds (Beige with subtle Olive borders) -->
+        <div class="absolute inset-0 pointer-events-none">
+            <!-- Left Fold -->
+            <div class="absolute inset-0 bg-[#ebeac8] border-r border-[#808000]/20" style="clip-path: polygon(0 0, 52% 52%, 0 100%);"></div>
+            <!-- Right Fold -->
+            <div class="absolute inset-0 bg-[#ebeac8] border-l border-[#808000]/20" style="clip-path: polygon(100% 0, 48% 52%, 100% 100%);"></div>
+            <!-- Bottom Pocket Fold -->
+            <div class="absolute inset-0 bg-[#F5F5DC] shadow-inner border-t border-[#808000]/30" style="clip-path: polygon(0 100%, 50% 45%, 100% 100%);"></div>
+        </div>
+
+        <!-- Top Envelope Flap (Olive #808000) -->
+        <div id="envelope-flap" class="absolute top-0 left-0 w-full h-[55%] bg-[#808000] origin-top shadow-lg transition-transform duration-700 ease-in-out z-10" style="clip-path: polygon(0 0, 100% 0, 50% 100%);">
+            <!-- Inner Flap Trim -->
+            <div class="w-full h-full border-b-2 border-[#F5F5DC]/30"></div>
+        </div>
+
+        <!-- Wax Seal Button (J & P Monogram) -->
+        <div id="wax-seal" class="absolute top-[52%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 w-16 h-16 md:w-20 md:h-20 bg-[#F5F5DC] rounded-full flex items-center justify-center shadow-xl border-4 border-[#808000] wax-seal cursor-pointer hover:scale-105 transition-transform">
+            <div class="w-12 h-12 md:w-14 md:h-14 rounded-full border border-[#808000]/50 flex items-center justify-center">
+                <span class="font-serif italic text-[#808000] text-lg md:text-xl font-bold tracking-tight">J&amp;P</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+    <!-- ================= NAVIGATION BAR ================= -->
+    <header id="navbar" class="fixed top-0 left-0 w-full z-40 bg-wedding-cream/90 backdrop-blur-md border-b border-wedding-gold/20 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#hero" class="font-serif text-xl sm:text-2xl font-bold tracking-wider text-wedding-charcoal">
+                J <span class="text-wedding-gold">&</span> P
+            </a>
+            
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 text-xs font-medium uppercase tracking-widest text-wedding-charcoal/80">
+                <a href="#story" class="hover:text-wedding-gold transition">Our Story</a>
+                <a href="#schedule" class="hover:text-wedding-gold transition">Schedule</a>
+                <a href="#venue" class="hover:text-wedding-gold transition">Venue</a>
+                <a href="#travel" class="hover:text-wedding-gold transition">Travel</a>
+                <a href="#registry" class="hover:text-wedding-gold transition">Registry</a>
+                <a href="#gallery" class="hover:text-wedding-gold transition">Gallery</a>
+                <a href="#faq" class="hover:text-wedding-gold transition">FAQ</a>
+            </nav>
+
+            <div class="flex items-center space-x-4">
+                <a href="#rsvp" class="hidden sm:inline-block px-5 py-2.5 bg-wedding-charcoal text-wedding-cream text-xs font-semibold uppercase tracking-widest rounded-full hover:bg-wedding-gold transition duration-300 shadow-sm">
+                    RSVP Now
+                </a>
+                <!-- Mobile menu button -->
+                <button id="mobile-menu-btn" class="md:hidden text-wedding-charcoal focus:outline-none p-2">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 w-full bg-wedding-cream border-b border-wedding-gold/20 shadow-xl py-6 px-8 flex flex-col space-y-4 text-sm tracking-wider uppercase font-medium">
+            <a href="#story" class="mobile-link hover:text-wedding-gold">Our Story</a>
+            <a href="#schedule" class="mobile-link hover:text-wedding-gold">Schedule</a>
+            <a href="#venue" class="mobile-link hover:text-wedding-gold">Venue</a>
+            <a href="#travel" class="mobile-link hover:text-wedding-gold">Travel</a>
+            <a href="#registry" class="mobile-link hover:text-wedding-gold">Registry</a>
+            <a href="#gallery" class="mobile-link hover:text-wedding-gold">Gallery</a>
+            <a href="#faq" class="mobile-link hover:text-wedding-gold">FAQ</a>
+            <a href="#rsvp" class="mobile-link px-5 py-3 bg-wedding-charcoal text-wedding-cream text-center rounded-full">RSVP Now</a>
+        </div>
+    </header>
+
+    <!-- ================= 2. HERO SECTION ================= -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center pt-24 pb-16 px-4 bg-wedding-cream overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#C5A880_1px,transparent_1px)] [background-size:16px_16px] pointer-events-none"></div>
+        
+        <div class="max-w-5xl mx-auto text-center relative z-10 flex flex-col items-center">
+            <span class="font-garamond text-wedding-gold italic text-2xl sm:text-3xl tracking-wide mb-3 animate-fade-in">
+                The pleasure of your company is requested at the wedding of
+            </span>
+            
+            <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-wedding-charcoal tracking-tight mb-6">
+                Jeremy Tabucao <br class="block sm:hidden"><span class="font-garamond font-normal italic text-3xl sm:text-5xl lg:text-6xl text-wedding-gold">&</span>Maria Patricia Vallo 
+            </h1>
+
+            <div class="w-24 h-0.5 bg-wedding-gold/60 mb-6"></div>
+
+            <p class="font-sans text-sm sm:text-base tracking-[0.3em] uppercase text-wedding-charcoal/60 mb-     font-medium text-center">
+    Saturday, January 9, 2027 
+    <span class="block sm:inline sm:ml-15 mt-15 sm:mt-4">• St. Michael the Archangel Parish, Dagupan City</span>
+</p>
+
+            <!-- Couple Hero Photo Grid / Card -->
+            <div class="relative w-full max-w-3xl aspect-[16/10] sm:aspect-[21/9] rounded-2xl overflow-hidden shadow-2xl mb-10 border-4 border-white">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1600" alt="Elena and Julian Engagement" class="w-full h-full object-cover transform hover:scale-105 transition duration-700">
+                <div class="absolute inset-0 bg-gradient-to-t from-wedding-charcoal/40 via-transparent to-transparent"></div>
+            </div>
+
+            <!-- Quick Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+                <a href="#rsvp" class="px-8 py-4 bg-wedding-charcoal text-wedding-cream text-xs uppercase tracking-[0.2em] font-semibold rounded-full hover:bg-wedding-gold transition duration-300 shadow-lg">
+                    RSVP to Event
+                </a>
+                <a href="#schedule" class="px-8 py-4 bg-transparent border border-wedding-charcoal text-wedding-charcoal text-xs uppercase tracking-[0.2em] font-semibold rounded-full hover:bg-wedding-charcoal hover:text-wedding-cream transition duration-300">
+                    View Schedule
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 3. LIVE COUNTDOWN TIMER ================= -->
+<section class="py-16 bg-wedding-champagne/60 border-y border-wedding-gold/20">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+        <span class="font-garamond italic text-wedding-gold text-xl tracking-wider block mb-2">Counting Down To Forever</span>
+        <h2 class="font-serif text-3xl sm:text-4xl font-bold text-wedding-charcoal mb-10">The Celebration Begins In</h2>
+        
+        <div id="countdown" class="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-8 max-w-2xl mx-auto">
+            <div class="bg-wedding-cream p-6 rounded-xl shadow-md border border-wedding-gold/20">
+                <span id="days" class="font-serif text-4xl sm:text-5xl font-bold text-wedding-charcoal block mb-1">00</span>
+                <span class="text-xs uppercase tracking-widest text-wedding-charcoal/60 font-medium">Days</span>
+            </div>
+            <div class="bg-wedding-cream p-6 rounded-xl shadow-md border border-wedding-gold/20">
+                <span id="hours" class="font-serif text-4xl sm:text-5xl font-bold text-wedding-charcoal block mb-1">00</span>
+                <span class="text-xs uppercase tracking-widest text-wedding-charcoal/60 font-medium">Hours</span>
+            </div>
+            <div class="bg-wedding-cream p-6 rounded-xl shadow-md border border-wedding-gold/20">
+                <span id="minutes" class="font-serif text-4xl sm:text-5xl font-bold text-wedding-charcoal block mb-1">00</span>
+                <span class="text-xs uppercase tracking-widest text-wedding-charcoal/60 font-medium">Minutes</span>
+            </div>
+            <div class="bg-wedding-cream p-6 rounded-xl shadow-md border border-wedding-gold/20">
+                <span id="seconds" class="font-serif text-4xl sm:text-5xl font-bold text-wedding-charcoal block mb-1">00</span>
+                <span class="text-xs uppercase tracking-widest text-wedding-charcoal/60 font-medium">Seconds</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- ================= 8A. OUR STORY SECTION ================= -->
+    <section id="story" class="py-24 px-4 bg-wedding-cream">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="font-garamond italic text-wedding-gold text-2xl tracking-wider block mb-2">How We Got Here</span>
+                <h2 class="font-serif text-4xl sm:text-5xl font-bold text-wedding-charcoal">Our Love Story</h2>
+                <div class="w-16 h-0.5 bg-wedding-gold mx-auto mt-4"></div>
+            </div>
+
+            <div class="space-y-16 relative before:absolute before:inset-0 before:left-1/2 before:-translate-x-1/2 before:w-0.5 before:bg-wedding-gold/30 hidden md:block"></div>
+
+            <div class="space-y-12">
+                <!-- Story Item 1 -->
+                <div class="flex flex-col md:flex-row items-center gap-8 bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-wedding-gold/10">
+                    <div class="w-full md:w-1/2 aspect-[4/3] rounded-xl overflow-hidden shadow">
+                        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&q=80&w=800" alt="How We Met" class="w-full h-full object-cover">
+                    </div>
+                    <div class="w-full md:w-1/2 space-y-3">
+                        <span class="text-xs uppercase tracking-[0.2em] font-semibold text-wedding-gold bg-wedding-champagne px-3 py-1 rounded-full">September 2020</span>
+                        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-wedding-charcoal">The Accidental Meet-Cute</h3>
+                        <p class="text-wedding-charcoal/80 text-sm sm:text-base leading-relaxed">
+                           Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus provident mollitia laudantium, dolores esse maiores vitae aut fugiat ipsum repellendus distinctio aspernatur consequuntur nisi. Ad provident aliquid rem quod cum.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Story Item 2 -->
+                <div class="flex flex-col md:flex-row-reverse items-center gap-8 bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-wedding-gold/10">
+                    <div class="w-full md:w-1/2 aspect-[4/3] rounded-xl overflow-hidden shadow">
+                        <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=800" alt="The Proposal" class="w-full h-full object-cover">
+                    </div>
+                    <div class="w-full md:w-1/2 space-y-3 text-left md:text-right">
+                        <span class="text-xs uppercase tracking-[0.2em] font-semibold text-wedding-gold bg-wedding-champagne px-3 py-1 rounded-full inline-block">November 2025</span>
+                        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-wedding-charcoal">The Sunset Proposal</h3>
+                        <p class="text-wedding-charcoal/80 text-sm sm:text-base leading-relaxed">
+                           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat placeat sit accusantium odio aperiam omnis adipisci dolore. Tempore quae debitis expedita ratione cupiditate quas molestiae consequuntur, mollitia ullam commodi similique.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Story Item 3 -->
+                <div class="flex flex-col md:flex-row items-center gap-8 bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-wedding-gold/10">
+                    <div class="w-full md:w-1/2 aspect-[4/3] rounded-xl overflow-hidden shadow">
+                        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=800" alt="Our Next Chapter" class="w-full h-full object-cover">
+                    </div>
+                    <div class="w-full md:w-1/2 space-y-3">
+                        <span class="text-xs uppercase tracking-[0.2em] font-semibold text-wedding-gold bg-wedding-champagne px-3 py-1 rounded-full">October 2027</span>
+                        <h3 class="font-serif text-2xl sm:text-3xl font-bold text-wedding-charcoal">Our Next Chapter</h3>
+                        <p class="text-wedding-charcoal/80 text-sm sm:text-base leading-relaxed">
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Placeat, quod. Deserunt quod nostrum ducimus odio, sit est consequatur qui error. Similique optio unde magni perferendis vitae, neque debitis maiores voluptates?
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 4. EVENT LOGISTICS & SCHEDULE ================= -->
+    <section id="schedule" class="py-24 px-4 bg-wedding-champagne/40 border-y border-wedding-gold/20">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="font-garamond italic text-wedding-gold text-2xl tracking-wider block mb-2">Events & Timings</span>
+                <h2 class="font-serif text-4xl sm:text-5xl font-bold text-wedding-charcoal">Wedding Day Timeline</h2>
+                <div class="w-16 h-0.5 bg-wedding-gold mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Timeline 1 -->
+                <div class="bg-wedding-cream p-8 rounded-2xl shadow-md border border-wedding-gold/20 flex flex-col items-center text-center group hover:-translate-y-1 transition duration-300">
+                    <div class="w-16 h-16 rounded-full bg-wedding-gold/10 text-wedding-gold flex items-center justify-center text-2xl mb-6 group-hover:bg-wedding-gold group-hover:text-wedding-cream transition">
+                        <i class="fa-solid fa-ring"></i>
+                    </div>
+                    <span class="text-xs font-semibold uppercase tracking-widest text-wedding-gold mb-1">3:00 PM</span>
+                    <h3 class="font-serif text-xl font-bold text-wedding-charcoal mb-3">The Ceremony</h3>
+                    <p class="text-wedding-charcoal/70 text-xs sm:text-sm leading-relaxed">
+                        The Glass Pavilion Garden. Please arrive 20 minutes prior for seating.
+                    </p>
+                </div>
+
+                <!-- Timeline 2 -->
+                <div class="bg-wedding-cream p-8 rounded-2xl shadow-md border border-wedding-gold/20 flex flex-col items-center text-center group hover:-translate-y-1 transition duration-300">
+                    <div class="w-16 h-16 rounded-full bg-wedding-gold/10 text-wedding-gold flex items-center justify-center text-2xl mb-6 group-hover:bg-wedding-gold group-hover:text-wedding-cream transition">
+                        <i class="fa-solid fa-champagne-glasses"></i>
+                    </div>
+                    <span class="text-xs font-semibold uppercase tracking-widest text-wedding-gold mb-1">4:30 PM</span>
+                    <h3 class="font-serif text-xl font-bold text-wedding-charcoal mb-3">Cocktail Hour</h3>
+                    <p class="text-wedding-charcoal/70 text-xs sm:text-sm leading-relaxed">
+                        Sunset Terrace. Sip artisan wines, signature cocktails, and gourmet hors d'oeuvres.
+                    </p>
+                </div>
+
+                <!-- Timeline 3 -->
+                <div class="bg-wedding-cream p-8 rounded-2xl shadow-md border border-wedding-gold/20 flex flex-col items-center text-center group hover:-translate-y-1 transition duration-300">
+                    <div class="w-16 h-16 rounded-full bg-wedding-gold/10 text-wedding-gold flex items-center justify-center text-2xl mb-6 group-hover:bg-wedding-gold group-hover:text-wedding-cream transition">
+                        <i class="fa-solid fa-utensils"></i>
+                    </div>
+                    <span class="text-xs font-semibold uppercase tracking-widest text-wedding-gold mb-1">6:00 PM</span>
+                    <h3 class="font-serif text-xl font-bold text-wedding-charcoal mb-3">Grand Reception</h3>
+                    <p class="text-wedding-charcoal/70 text-xs sm:text-sm leading-relaxed">
+                        The Grand Ballroom. Plated dinner, heartfelt toasts, and first dances under chandeliers.
+                    </p>
+                </div>
+
+                <!-- Timeline 4 -->
+                <div class="bg-wedding-cream p-8 rounded-2xl shadow-md border border-wedding-gold/20 flex flex-col items-center text-center group hover:-translate-y-1 transition duration-300">
+                    <div class="w-16 h-16 rounded-full bg-wedding-gold/10 text-wedding-gold flex items-center justify-center text-2xl mb-6 group-hover:bg-wedding-gold group-hover:text-wedding-cream transition">
+                        <i class="fa-solid fa-music"></i>
+                    </div>
+                    <span class="text-xs font-semibold uppercase tracking-widest text-wedding-gold mb-1">9:30 PM</span>
+                    <h3 class="font-serif text-xl font-bold text-wedding-charcoal mb-3">After-Party</h3>
+                    <p class="text-wedding-charcoal/70 text-xs sm:text-sm leading-relaxed">
+                        The Vineyard Lounge. Late-night bites, open bar, and dancing until midnight.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= VENUE DETAILS & MAPS ================= -->
+    <section id="venue" class="py-24 px-4 bg-wedding-cream">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="font-garamond italic text-wedding-gold text-2xl tracking-wider block mb-2">Location & Guidance</span>
+                <h2 class="font-serif text-4xl sm:text-5xl font-bold text-wedding-charcoal">The Venue & Dress Code</h2>
+                <div class="w-16 h-0.5 bg-wedding-gold mx-auto mt-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-stretch">
+                <!-- Venue Card -->
+                <div class="bg-white p-8 rounded-2xl shadow-md border border-wedding-gold/10 flex flex-col justify-between">
+                    <div>
+                        <div class="aspect-[16/9] rounded-xl overflow-hidden mb-6 shadow">
+                            <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=800" alt="The Glasshouse Napa Valley" class="w-full h-full object-cover">
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold text-wedding-charcoal mb-2">Villasis Pangasinan</h3>
+                        <p class="text-wedding-charcoal/70 text-sm mb-4 leading-relaxed">
+                           <br>
+                            Bacag East
+                        </p>
+                    </div>
+                    <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center space-x-2 w-full py-3 bg-wedding-charcoal text-wedding-cream rounded-full text-xs uppercase tracking-widest font-semibold hover:bg-wedding-gold transition duration-300">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                        <span>Open in Google Maps</span>
+                    </a>
+                </div>
+
+                <!-- Dress Code & Theme Card -->
+                <div class="bg-white p-8 rounded-2xl shadow-md border border-wedding-gold/10 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center space-x-4 mb-6">
+                            <div class="w-14 h-14 rounded-full bg-wedding-gold/10 text-wedding-gold flex items-center justify-center text-xl">
+                                <i class="fa-solid fa-shirt"></i>
+                            </div>
+                            <div>
+                                <span class="text-xs uppercase tracking-widest text-wedding-gold font-semibold">Attire Guidelines</span>
+                                <h3 class="font-serif text-2xl font-bold text-wedding-charcoal">Black-Tie Optional</h3>
+                            </div>
+                        </div>
+                        <p class="text-wedding-charcoal/70 text-sm sm:text-base leading-relaxed mb-6">
+                            We invite our guests to dress in their formal best. Floor-length gowns, elegant cocktail dresses, tuxedos, or dark formal suits.
+                        </p>
+                        
+                        <div class="mb-4">
+    <span class="text-xs uppercase tracking-widest text-wedding-charcoal/60 font-semibold block mb-3">Preferred Color Palette Inspiration</span>
+    <div class="flex items-center space-x-4">
+        <div class="flex flex-col items-center">
+            <div class="w-10 h-10 rounded-full bg-[#808000] border border-wedding-gold/40 shadow-sm"></div>
+            <span class="text-[10px] text-wedding-charcoal/60 mt-1">Olive</span>
+        </div>
+        <div class="flex flex-col items-center">
+            <div class="w-10 h-10 rounded-full bg-[#F5F5DC] border border-wedding-gold/40 shadow-sm"></div>
+            <span class="text-[10px] text-wedding-charcoal/60 mt-1">Beige</span>
+        </div>
+        <div class="flex flex-col items-center">
+            <!-- Added border and ring to make Ivory stand out against light backgrounds -->
+            <div class="w-10 h-10 rounded-full bg-[#FFFFF0] border border-wedding-gold/50 ring-1 ring-black/10 shadow"></div>
+            <span class="text-[10px] text-wedding-charcoal/60 mt-1">Ivory</span>
+        </div>
+        <div class="flex flex-col items-center">
+            <div class="w-10 h-10 rounded-full bg-[#483C32] border border-wedding-gold/40 shadow-sm"></div>
+            <span class="text-[10px] text-wedding-charcoal/60 mt-1">Taupe</span>
+        </div>
+    </div>
+</div>
+                    <div class="bg-wedding-champagne/60 p-4 rounded-xl text-xs text-wedding-charcoal/80 italic">
+                        * Note: The ceremony will take place on the lawn, so block heels or flats are recommended for footwear.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 5. DIGITAL RSVP SYSTEM ================= -->
+    <section id="rsvp" class="py-24 px-4 bg-wedding-champagne/60 border-y border-wedding-gold/20">
+        <div class="max-w-3xl mx-auto bg-wedding-cream p-8 sm:p-12 rounded-3xl shadow-xl border border-wedding-gold/30">
+            <div class="text-center mb-10">
+                <span class="font-garamond italic text-wedding-gold text-2xl tracking-wider block mb-2">Join Our Celebration</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-wedding-charcoal">Kindly Reply By September 15, 2027</h2>
+                <div class="w-16 h-0.5 bg-wedding-gold mx-auto mt-4"></div>
+            </div>
+
+            <!-- RSVP Form -->
+            <form id="rsvp-form" class="space-y-6">
+                <!-- Attendance Choice -->
+                <div>
+                    <label class="block text-xs uppercase tracking-widest font-semibold text-wedding-charcoal mb-3">Will you attend? *</label>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <label class="flex items-center p-4 bg-white rounded-xl border border-wedding-gold/30 cursor-pointer hover:border-wedding-gold transition">
+                            <input type="radio" name="attendance" value="accept" required class="text-wedding-gold focus:ring-wedding-gold w-4 h-4">
+                            <span class="ml-3 font-medium text-wedding-charcoal text-sm">Joyfully Accept</span>
+                        </label>
+                        <label class="flex items-center p-4 bg-white rounded-xl border border-wedding-gold/30 cursor-pointer hover:border-wedding-gold transition">
+                            <input type="radio" name="attendance" value="decline" required class="text-wedding-gold focus:ring-wedding-gold w-4 h-4">
+                            <span class="ml-3 font-medium text-wedding-charcoal text-sm">Regretfully Decline</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Guest Details Container -->
+                <div id="guest-details-container" class="space-y-6">
+                    <div>
+                        <label class="block text-xs uppercase tracking-widest font-semibold text-wedding-charcoal mb-2" for="fullname">Full Name(s) *</label>
+                        <input type="text" id="fullname" name="fullname" placeholder="e.g. Mr. & Mrs. Alexander Wright" class="w-full px-4 py-3 bg-white rounded-xl border border-wedding-gold/30 focus:outline-none focus:border-wedding-gold text-sm">
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest font-semibold text-wedding-charcoal mb-2" for="guestcount">Number of Guests Attending</label>
+                            <select id="guestcount" name="guestcount" class="w-full px-4 py-3 bg-white rounded-xl border border-wedding-gold/30 focus:outline-none focus:border-wedding-gold text-sm">
+                                <option value="1">1 Guest</option>
+                                <option value="2" selected>2 Guests</option>
+                                <option value="3">3 Guests</option>
+                                <option value="4">4 Guests</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest font-semibold text-wedding-charcoal mb-2" for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" placeholder="your.email@example.com" class="w-full px-4 py-3 bg-white rounded-xl border border-wedding-gold/30 focus:outline-none focus:border-wedding-gold text-sm">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs uppercase tracking-widest font-semibold text-wedding-charcoal mb-2" for="dietary">Dietary Restrictions & Allergies</label>
+                        <textarea id="dietary" name="dietary" rows="3" placeholder="Please list any vegan, gluten-free, nut allergies, or special meal requirements..." class="w-full px-4 py-3 bg-white rounded-xl border border-wedding-gold/30 focus:outline-none focus:border-wedding-gold text-sm"></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full py-4 bg-wedding-charcoal text-wedding-cream rounded-full text-xs uppercase tracking-[0.2em] font-semibold hover:bg-wedding-gold transition duration-300 shadow-lg">
+                    Submit RSVP Response
+                </button>
+            </form>
+
+            <!-- Success Confirmation Card (Hidden by default) -->
+            <div id="rsvp-success" class="hidden text-center py-8 space-y-4">
+                <div class="w-16 h-16 bg-wedding-gold text-wedding-cream rounded-full flex items-center justify-center text-2xl mx-auto shadow-md">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+                <h3 class="font-serif text-3xl font-bold text-wedding-charcoal" id="success-title">Thank You!</h3>
+                <p class="text-wedding-charcoal/80 text-sm max-w-md mx-auto" id="success-message">
+                    Your response has been successfully recorded. We look forward to celebrating with you!
+                </p>
+                <button id="reset-rsvp" class="mt-4 px-6 py-2 bg-wedding-champagne text-wedding-charcoal rounded-full text-xs uppercase tracking-widest font-medium hover:bg-wedding-gold hover:text-white transition">
+                    Edit Response
+                </button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ================= 7. REGISTRY & GIFTING ================= -->
+    <section id="registry" class="py-24 px-4 bg-wedding-champagne/40 border-y border-wedding-gold/20">
+        <div class="max-w-4xl mx-auto text-center">
+            <span class="font-garamond italic text-wedding-gold text-2xl tracking-wider block mb-2">With Love & Gratitude</span>
+            <h2 class="font-serif text-4xl sm:text-5xl font-bold text-wedding-charcoal mb-6">Registry & Gifting</h2>
+            
+            <p class="text-wedding-charcoal/80 text-sm sm:text-base max-w-xl mx-auto mb-10 leading-relaxed">
+                Your presence at our wedding is the greatest gift of all! If you wish to honor us with a token, we have curated a small traditional registry as well as a honeymoon fund.
+            </p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
+                <a href="https://www.crateandbarrel.com" target="_blank" rel="noopener noreferrer" class="p-6 bg-wedding-cream rounded-2xl shadow-sm border border-wedding-gold/20 hover:border-wedding-gold transition group flex flex-col items-center">
+                    <i class="fa-solid fa-gift text-2xl text-wedding-gold mb-3 group-hover:scale-110 transition"></i>
+                    <span class="font-serif text-lg font-bold text-wedding-charcoal mb-1">Crate & Barrel</span>
+                    <span class="text-xs text-wedding-charcoal/60 uppercase tracking-widest">Traditional Registry</span>
+                </a>
+
+                <a href="https://www.zola.com" target="_blank" rel="noopener noreferrer" class="p-6 bg-wedding-cream rounded-2xl shadow-sm border border-wedding-gold/20 hover:border-wedding-gold transition group flex flex-col items-center">
+                    <i class="fa-solid fa-heart text-2xl text-wedding-gold mb-3 group-hover:scale-110 transition"></i>
+                    <span class="font-serif text-lg font-bold text-wedding-charcoal mb-1">Zola Registry</span>
+                    <span class="text-xs text-wedding-charcoal/60 uppercase tracking-widest">Home & Experiences</span>
+                </a>
+
+                <a href="https://www.honeyfund.com" target="_blank" rel="noopener noreferrer" class="p-6 bg-wedding-cream rounded-2xl shadow-sm border border-wedding-gold/20 hover:border-wedding-gold transition group flex flex-col items-center">
+                    <i class="fa-solid fa-plane-departure text-2xl text-wedding-gold mb-3 group-hover:scale-110 transition"></i>
+                    <span class="font-serif text-lg font-bold text-wedding-charcoal mb-1">Honeymoon Fund</span>
+                    <span class="text-xs text-wedding-charcoal/60 uppercase tracking-widest">Amalfi Coast Adventure</span>
+                </a>
+            </div>
+
+            <div class="bg-wedding-cream p-6 rounded-2xl border border-wedding-gold/20 max-w-xl mx-auto text-xs text-wedding-charcoal/70 italic">
+                "Contributions towards our dream honeymoon in Italy will help create memories that last a lifetime."
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 8B. PHOTO GALLERY & SONG REQUESTS ================= -->
+    <section id="gallery" class="py-24 px-4 bg-wedding-cream">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="font-garamond italic text-wedding-gold text-2xl tracking-wider block mb-2">Moments in Time</span>
+                <h2 class="font-serif text-4xl sm:text-5xl font-bold text-wedding-charcoal">Photo Gallery</h2>
+                <div class="w-16 h-0.5 bg-wedding-gold mx-auto mt-4"></div>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-20">
+                <div class="aspect-square rounded-xl overflow-hidden shadow-sm group">
+                    <img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&q=80&w=600" alt="Gallery 1" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="aspect-square rounded-xl overflow-hidden shadow-sm group">
+                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=600" alt="Gallery 2" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="aspect-square rounded-xl overflow-hidden shadow-sm group">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=600" alt="Gallery 3" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="aspect-square rounded-xl overflow-hidden shadow-sm group">
+                    <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&q=80&w=600" alt="Gallery 4" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+            </div>
+
+            <!-- Song Request Section -->
+            <div class="max-w-2xl mx-auto bg-wedding-champagne/40 p-8 sm:p-10 rounded-3xl border border-wedding-gold/30">
+                <div class="text-center mb-8">
+                    <span class="font-garamond italic text-wedding-gold text-xl tracking-wider block mb-1">Help Us Fill The Playlist</span>
+                    <h3 class="font-serif text-2xl sm:text-3xl font-bold text-wedding-charcoal">Request a Song</h3>
+                </div>
+
+                <form id="song-form" class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <input type="text" id="song-title" name="song-title" placeholder="Song Title *" required class="w-full px-4 py-3 bg-wedding-cream rounded-xl border border-wedding-gold/30 focus:outline-none focus:border-wedding-gold text-sm">
+                        <input type="text" id="artist-name" name="artist-name" placeholder="Artist Name *" required class="w-full px-4 py-3 bg-wedding-cream rounded-xl border border-wedding-gold/30 focus:outline-none focus:border-wedding-gold text-sm">
+                    </div>
+                    <button type="submit" class="w-full py-3 bg-wedding-charcoal text-wedding-cream rounded-full text-xs uppercase tracking-[0.2em] font-semibold hover:bg-wedding-gold transition">
+                        Submit Song Suggestion
+                    </button>
+                </form>
+
+                <div id="song-success" class="hidden text-center text-xs text-wedding-gold font-medium mt-3">
+                    <i class="fa-solid fa-music"></i> Thank you! Your song request has been added to the DJ queue.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================= 8D. FAQ ACCORDION ================= -->
+    <section id="faq" class="py-24 px-4 bg-wedding-champagne/40 border-t border-wedding-gold/20">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="font-garamond italic text-wedding-gold text-2xl tracking-wider block mb-2">Got Questions?</span>
+                <h2 class="font-serif text-4xl sm:text-5xl font-bold text-wedding-charcoal">Frequently Asked Questions</h2>
+                <div class="w-16 h-0.5 bg-wedding-gold mx-auto mt-4"></div>
+            </div>
+
+            <div class="space-y-4">
+                <!-- FAQ 1 -->
+                <div class="bg-wedding-cream rounded-2xl border border-wedding-gold/20 overflow-hidden shadow-sm">
+                    <button class="faq-toggle w-full px-6 py-5 text-left flex items-center justify-between font-serif text-lg font-bold text-wedding-charcoal focus:outline-none">
+                        <span>Are children invited to the wedding?</span>
+                        <i class="fa-solid fa-chevron-down text-wedding-gold transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5 text-wedding-charcoal/70 text-sm leading-relaxed">
+                        While we adore your little ones, we have chosen to make our wedding an adult-only celebration, with the exception of immediate family members in the wedding party. We appreciate you making prior arrangements!
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="bg-wedding-cream rounded-2xl border border-wedding-gold/20 overflow-hidden shadow-sm">
+                    <button class="faq-toggle w-full px-6 py-5 text-left flex items-center justify-between font-serif text-lg font-bold text-wedding-charcoal focus:outline-none">
+                        <span>Can I bring a plus-one?</span>
+                        <i class="fa-solid fa-chevron-down text-wedding-gold transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5 text-wedding-charcoal/70 text-sm leading-relaxed">
+                        Please check your digital invitation envelope and RSVP form for your specific guest allocation. If you received a plus-one, their name or guest slot will be indicated when submitting your RSVP.
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="bg-wedding-cream rounded-2xl border border-wedding-gold/20 overflow-hidden shadow-sm">
+                    <button class="faq-toggle w-full px-6 py-5 text-left flex items-center justify-between font-serif text-lg font-bold text-wedding-charcoal focus:outline-none">
+                        <span>What are the photography rules during the ceremony?</span>
+                        <i class="fa-solid fa-chevron-down text-wedding-gold transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-5 text-wedding-charcoal/70 text-sm leading-relaxed">
+                        We are hosting an "unplugged" ceremony. We kindly request that all phones and cameras be put away so our professional photographers can capture the magic. Feel free to snap as many photos as you wish during cocktails and the reception!
+                    </div>
+                </div>
+
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-wedding-charcoal text-wedding-cream py-16 px-4 text-center">
+        <div class="max-w-3xl mx-auto space-y-6">
+            <h2 class="font-serif text-3xl sm:text-4xl font-bold tracking-wider">Jeremy & Patricia</h2>
+            <p class="font-garamond italic text-wedding-gold text-xl">January 9, 2027 • Dagupan City</p>
+            <div class="w-12 h-0.5 bg-wedding-gold/40 mx-auto"></div>
+            <p class="text-xs tracking-widest uppercase text-wedding-cream/60">
+                With all our love, thank you for being part of our journey.
+            </p>
+        </div>
+    </footer>
+
+    <!-- ================= MODAL DIALOG COMPONENT ================= -->
+    <div id="custom-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-wedding-charcoal/80 backdrop-blur-sm hidden p-4">
+        <div class="bg-wedding-cream w-full max-w-md p-8 rounded-3xl shadow-2xl border border-wedding-gold/30 text-center space-y-4">
+            <h3 id="modal-title" class="font-serif text-2xl font-bold text-wedding-charcoal">Notice</h3>
+            <p id="modal-text" class="text-wedding-charcoal/80 text-sm leading-relaxed"></p>
+            <button onclick="closeModal()" class="w-full py-3 bg-wedding-charcoal text-wedding-cream rounded-full text-xs uppercase tracking-widest font-semibold hover:bg-wedding-gold transition">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <!-- External JavaScript File -->
+    <script src="script.js" defer></script>
+</body>
+</html>
